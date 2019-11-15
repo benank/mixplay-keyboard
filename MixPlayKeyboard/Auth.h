@@ -4,6 +4,8 @@
 #include <iostream>
 #include <windows.h>
 #include <shellapi.h>
+#include <fstream>
+#include <sstream>
 #include "interactive/interactivity.h"
 #include "ClientIds.h"
 
@@ -15,5 +17,10 @@ class Auth
 
 	private:
 		static std::string authorization;
+		static std::string token;
+
+		static int ReAuthenticate();
+		static void SaveToken(std::string token);
+		static void LoadToken();
 };
 

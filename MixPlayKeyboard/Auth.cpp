@@ -1,6 +1,7 @@
 #include "Auth.h"
 
 std::string Auth::authorization;
+std::string Auth::token;
 
 int Auth::Authorize()
 {
@@ -8,6 +9,48 @@ int Auth::Authorize()
 	std::cout << "Authorizing...\n";
 #endif
 
+	LoadToken();
+
+	int err = 0;
+
+	if (token.empty())
+	{
+		err = ReAuthenticate();
+		if (err) return err;
+	}
+	else
+	{
+		bool isStale;
+		err = interactive_auth_is_token_stale(token.c_str(), &isStale);
+		if (err) return err;
+
+		if (isStale)
+		{
+			char newToken[1024];
+			size_t size = token.length();
+			err = interactive_auth_refresh_token(CLIENT_ID, CLIENT_SECRET, token.c_str(), newToken, &size);
+			if (err) return err;
+			token = std::string(newToken, size);
+		}
+	}
+
+	// Extract the authorization header from the refresh token.
+	char authBuffer[1024];
+	size_t authBufferLength = _countof(authBuffer);
+	err = interactive_auth_parse_refresh_token(token.c_str(), authBuffer, &authBufferLength);
+	if (err) return err;
+
+	// Set the authorization out parameter.
+	Auth::authorization = std::string(authBuffer, authBufferLength);
+
+#ifdef MIXER_DEBUG
+	std::cout << "Successfully authorized!\n";
+#endif
+	return 0;
+}
+
+int Auth::ReAuthenticate()
+{
 	int err = 0;
 	char shortCode[7];
 	size_t shortCodeLength = _countof(shortCode);
@@ -40,22 +83,40 @@ int Auth::Authorize()
 		return err;
 	}
 
-	/*
-	*	TODO:	This is where you would serialize the refresh token locally or on your own service for future use in a way that is associated with the current user.
-	*			Future calls would then only need to check if the token is stale, refresh it if so, and then parse the new authorization header.
-	*/
+	token = std::string(refreshTokenBuffer, refreshTokenLength);
+	SaveToken(token);
 
-	// Extract the authorization header from the refresh token.
-	char authBuffer[1024];
-	size_t authBufferLength = _countof(authBuffer);
-	err = interactive_auth_parse_refresh_token(refreshTokenBuffer, authBuffer, &authBufferLength);
-	if (err) return err;
+	return 0;
+}
 
-	// Set the authorization out parameter.
-	Auth::authorization = std::string(authBuffer, authBufferLength);
+void Auth::SaveToken(std::string token)
+{
+#ifdef MIXER_DEBUG
+	std::cout << "Saving auth token...\n";
+#endif
+
+	std::ofstream file;
+	file.open("token.dat", std::ofstream::out | std::ofstream::trunc | std::ofstream::in);
+	file << token;
+	file.close();
 
 #ifdef MIXER_DEBUG
-	std::cout << "Successfully authorized!\n";
+	std::cout << "Saved auth token!\n";
 #endif
-	return 0;
+}
+
+void Auth::LoadToken()
+{
+#ifdef MIXER_DEBUG
+	std::cout << "Loading auth token...\n";
+#endif
+
+	std::ifstream t("token.dat");
+	std::stringstream buffer;
+	buffer << t.rdbuf();
+	token = buffer.str();
+
+#ifdef MIXER_DEBUG
+	std::cout << "Loaded auth token!\n";
+#endif
 }

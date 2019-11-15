@@ -18,9 +18,6 @@ int Interactive::Initialize()
 	err = interactive_connect(session, Auth::GetAuthorization().c_str(), INTERACTIVE_ID, SHARE_CODE, false);
 	if (err) return err;
 
-	err = get_all_scenes();
-	if (err) return err;
-
 	return err;
 }
 
@@ -183,6 +180,14 @@ int Interactive::set_state_changed_handler()
 
 			// Now notify participants that interactive is ready.
 			err = interactive_set_ready(session, true);
+			if (err)
+			{
+				puts(std::to_string(err).c_str());
+				return;
+			}
+
+
+			err = get_all_scenes();
 			if (err)
 			{
 				puts(std::to_string(err).c_str());
