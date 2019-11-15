@@ -6,6 +6,7 @@
 #include <shellapi.h>
 
 #include "interactive/interactivity.h"
+#include "Secret.h"
 
 #define CLIENT_ID		"40eb4e14a903aba102772fdb9df6ecb4818fd17a6ab8c4e4"
 #define INTERACTIVE_ID	"429567"
@@ -23,7 +24,7 @@ int main()
 	size_t shortCodeHandleLength = sizeof(shortCodeHandle);
 
 	// Get an OAuth short code from the user. For more information about OAuth see: https://oauth.net/2/
-	err = interactive_auth_get_short_code(CLIENT_ID, nullptr, shortCode, &shortCodeLength, shortCodeHandle, &shortCodeHandleLength);
+	err = interactive_auth_get_short_code(CLIENT_ID, CLIENT_SECRET, shortCode, &shortCodeLength, shortCodeHandle, &shortCodeHandleLength);
 	if (err) return err;
 
 	// On Windows, pop the browser for the user to approve access.
@@ -33,7 +34,7 @@ int main()
 	// Wait for OAuth token response.
 	char refreshTokenBuffer[1024];
 	size_t refreshTokenLength = sizeof(refreshTokenBuffer);
-	err = interactive_auth_wait_short_code(CLIENT_ID, nullptr, shortCodeHandle, refreshTokenBuffer, &refreshTokenLength);
+	err = interactive_auth_wait_short_code(CLIENT_ID, CLIENT_SECRET, shortCodeHandle, refreshTokenBuffer, &refreshTokenLength);
 	if (err)
 	{
 		if (MIXER_ERROR_TIMED_OUT == err)
@@ -53,6 +54,7 @@ int main()
 	err = interactive_auth_parse_refresh_token(refreshTokenBuffer, authBuffer, &authBufferLength);
 	if (err) return err;
 
+	std::cout << "Authenticated!\n";
 
 	for (;;);
 }
