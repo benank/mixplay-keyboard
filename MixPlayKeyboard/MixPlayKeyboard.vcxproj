@@ -154,6 +154,9 @@
     <ClCompile Include="interactive\interactivity.cpp" />
     <ClCompile Include="MixPlayKeyboard.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Secret.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
