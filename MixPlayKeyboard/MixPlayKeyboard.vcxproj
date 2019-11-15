@@ -151,10 +151,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Auth.cpp" />
+    <ClCompile Include="Interactive.cpp" />
+    <ClCompile Include="InteractiveButton.cpp" />
+    <ClCompile Include="InteractiveScene.cpp" />
     <ClCompile Include="interactive\interactivity.cpp" />
     <ClCompile Include="MixPlayKeyboard.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Auth.h" />
+    <ClInclude Include="ClientIds.h" />
+    <ClInclude Include="Interactive.h" />
+    <ClInclude Include="InteractiveButton.h" />
+    <ClInclude Include="InteractiveScene.h" />
     <ClInclude Include="Secret.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
