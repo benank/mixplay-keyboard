@@ -157,6 +157,7 @@
     <ClCompile Include="InteractiveScene.cpp" />
     <ClCompile Include="interactive\interactivity.cpp" />
     <ClCompile Include="MixPlayKeyboard.cpp" />
+    <ClCompile Include="Participant.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auth.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Interactive.h" />
     <ClInclude Include="InteractiveControl.h" />
     <ClInclude Include="InteractiveScene.h" />
+    <ClInclude Include="Participant.h" />
     <ClInclude Include="Secret.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

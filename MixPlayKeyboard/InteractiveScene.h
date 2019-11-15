@@ -9,10 +9,11 @@
 class InteractiveScene
 {
 public:
-	InteractiveScene(interactive_scene scene, interactive_session session);
+	InteractiveScene(interactive_scene scene);
 	~InteractiveScene();
 	const char* GetId() { return scene.id; };
 	void AddControl(const interactive_control* control);
+	static void SetSession(interactive_session session) { InteractiveScene::session = session; };
 
 private:
 	interactive_scene scene;

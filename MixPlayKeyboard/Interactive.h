@@ -2,6 +2,7 @@
 #include "interactive/interactivity.h"
 #include "Auth.h"
 #include "InteractiveScene.h"
+#include "Participant.h"
 
 #include <iostream>
 #include <string>

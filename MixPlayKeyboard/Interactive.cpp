@@ -12,6 +12,10 @@ int Interactive::Initialize()
 	err = open_session();
 	if (err) return err;
 
+	InteractiveScene::SetSession(session);
+	InteractiveControl::SetSession(session);
+	Participant::SetSession(session);
+
 	err = set_handlers();
 	if (err) return err;
 
@@ -56,7 +60,10 @@ void Interactive::handle_input(void * context, interactive_session session, cons
 	// Now handle the input based on input type.
 	if ((input->type == input_type_key || input->type == input_type_click) && input->buttonData.action == interactive_button_action_down)
 	{
-		if (0 != input->transactionIdLength)
+		interactive_group user_group = interactive_participant_get_group(interactive_session session, const char *participantId, char *, size_t *groupLength)
+		InteractiveControl control = 
+		
+		/*if (0 != input->transactionIdLength)
 		{
 			// Capture the transaction on button down to deduct the viewer's sparks before executing any game functionality.
 			controlsByTransaction[input->transactionId] = input->control.id;
@@ -87,7 +94,7 @@ void Interactive::handle_input(void * context, interactive_session session, cons
 				std::cerr << "Failed to move " << participantName << " to the default group." << std::endl;
 				return;
 			}
-		}
+		}*/
 	}
 }
 
@@ -220,7 +227,7 @@ int Interactive::get_all_scenes_handle_scene(void * context, interactive_session
 #ifdef MIXER_DEBUG
 	std::cout << "Added scene with id " << scene->id << "\n";
 #endif
-	scenesById[scene->id] = new InteractiveScene(*scene, session);
+	scenesById[scene->id] = new InteractiveScene(*scene);
 	get_scene_controls(scenesById[scene->id]);
 	return 0;
 }
