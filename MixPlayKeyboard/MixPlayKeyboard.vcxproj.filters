@@ -27,10 +27,10 @@
     <ClCompile Include="Interactive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InteractiveButton.cpp">
+    <ClCompile Include="InteractiveScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InteractiveScene.cpp">
+    <ClCompile Include="InteractiveControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,10 +47,10 @@
     <ClInclude Include="Interactive.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InteractiveButton.h">
+    <ClInclude Include="InteractiveScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InteractiveScene.h">
+    <ClInclude Include="InteractiveControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

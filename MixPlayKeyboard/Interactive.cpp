@@ -5,6 +5,7 @@ interactive_session Interactive::session;
 std::map<std::string, std::string> Interactive::controlsByTransaction;
 std::map<const char*, InteractiveScene*> Interactive::scenesById;
 int Interactive::err;
+InteractiveScene* Interactive::currentEnumeratingScene;
 
 int Interactive::Initialize()
 {
@@ -220,10 +221,21 @@ int Interactive::get_all_scenes_handle_scene(void * context, interactive_session
 	std::cout << "Added scene with id " << scene->id << "\n";
 #endif
 	scenesById[scene->id] = new InteractiveScene(*scene, session);
+	get_scene_controls(scenesById[scene->id]);
 	return 0;
 }
 
+int Interactive::get_scene_controls(InteractiveScene* scene)
+{
+	currentEnumeratingScene = scene;
+	return interactive_scene_get_controls(session, scene->GetId(), (on_control_enumerate) get_scene_controls_handler);
+}
 
+int Interactive::get_scene_controls_handler(void * context, interactive_session session, const interactive_control * control)
+{
+	currentEnumeratingScene->AddControl(control);
+	return 0;
+}
 
 int Interactive::get_participant_name(interactive_session session, const char * participantId, std::string & participantName)
 {

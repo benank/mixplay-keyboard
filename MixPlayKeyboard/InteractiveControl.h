@@ -1,12 +1,11 @@
 #pragma once
 #include "interactive/interactivity.h"
-#include "Interactive.h"
 
-class InteractiveButton
+class InteractiveControl
 {
 	public:
-		InteractiveButton(interactive_control control) : control(control) {};
-		~InteractiveButton();
+		InteractiveControl(interactive_control control, interactive_session session) : control(control) {};
+		~InteractiveControl();
 
 		int TriggerCooldown(const unsigned long long cooldownMs);
 		int SetDisabled(bool disabled);
@@ -15,6 +14,7 @@ class InteractiveButton
 
 	private:
 		interactive_control control;
+		interactive_session session;
 		bool disabled = false;
 };
 

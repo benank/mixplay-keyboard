@@ -26,6 +26,7 @@ class Interactive
 		static std::map<std::string, std::string> controlsByTransaction;
 		static std::map<const char*, InteractiveScene*> scenesById;
 		static int err;
+		static InteractiveScene* currentEnumeratingScene;
 
 		static void handle_input(void* context, interactive_session session, const interactive_input* input);
 		static void handle_user(void* context, interactive_session session, const interactive_user* user);
@@ -40,6 +41,8 @@ class Interactive
 		static int close_session();
 		static int get_all_scenes();
 		static int get_all_scenes_handle_scene(void *context, interactive_session session, const interactive_scene *scene);
+		static int get_scene_controls(InteractiveScene* scene);
+		static int get_scene_controls_handler(void *context, interactive_session session, const interactive_control *control);
 		static int get_participant_name(interactive_session session, const char* participantId, std::string& participantName);
 };
 
