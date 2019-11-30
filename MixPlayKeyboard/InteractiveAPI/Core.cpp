@@ -94,7 +94,7 @@ void Core::handle_input(void * context, interactive_session session, const inter
 	if ((input->type == input_type_key || input->type == input_type_click) && input->buttonData.action == interactive_button_action_down)
 	{
 		bool isLivePlayButton = false;
-		control->GetProperty("liveplay", &isLivePlayButton);
+		control->GetMetaProperty("liveplay", &isLivePlayButton);
 		if (isLivePlayButton)
 		{
 			std::cout << "Clicked live play button!" << std::endl;

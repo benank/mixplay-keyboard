@@ -37,5 +37,5 @@ std::string Participant::GetGroup()
 	size_t size = 0;
 	char group[1024];
 	interactive_participant_get_group(session, this->participant.id, group, &size);
-	return std::string(group, size);
+	return size == 0 ? "default" : std::string(group, size);
 }
