@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -106,6 +106,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,21 +152,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Auth.cpp" />
-    <ClCompile Include="Interactive.cpp" />
-    <ClCompile Include="InteractiveControl.cpp" />
-    <ClCompile Include="InteractiveScene.cpp" />
-    <ClCompile Include="interactive\interactivity.cpp" />
+    <ClCompile Include="InteractiveAPI\Auth.cpp" />
+    <ClCompile Include="InteractiveAPI\Control.cpp" />
+    <ClCompile Include="InteractiveAPI\Core.cpp" />
+    <ClCompile Include="InteractiveAPI\interactivity\interactivity.cpp" />
+    <ClCompile Include="InteractiveAPI\Participant.cpp" />
+    <ClCompile Include="InteractiveAPI\Scene.cpp" />
     <ClCompile Include="MixPlayKeyboard.cpp" />
-    <ClCompile Include="Participant.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Auth.h" />
     <ClInclude Include="ClientIds.h" />
-    <ClInclude Include="Interactive.h" />
-    <ClInclude Include="InteractiveControl.h" />
-    <ClInclude Include="InteractiveScene.h" />
-    <ClInclude Include="Participant.h" />
+    <ClInclude Include="InteractiveAPI\Auth.h" />
+    <ClInclude Include="InteractiveAPI\Control.h" />
+    <ClInclude Include="InteractiveAPI\Core.h" />
+    <ClInclude Include="InteractiveAPI\interactivity\interactivity.h" />
+    <ClInclude Include="InteractiveAPI\Participant.h" />
+    <ClInclude Include="InteractiveAPI\Scene.h" />
     <ClInclude Include="Secret.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

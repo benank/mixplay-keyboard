@@ -14,25 +14,28 @@ Participant::~Participant()
 
 unsigned int Participant::GetUserId()
 {
-	return 0;
+	return this->participant.userId;
 }
 
 std::string Participant::GetUsername()
 {
-	return std::string();
+	return std::string(this->participant.userName);
 }
 
 unsigned int Participant::GetLevel()
 {
-	return 0;
+	return this->participant.level;
 }
 
 int Participant::SetGroup(std::string groupId)
 {
-	return 0;
+	return interactive_participant_set_group(session, this->participant.id, groupId.c_str());
 }
 
 std::string Participant::GetGroup()
 {
-	return std::string();
+	size_t size = 0;
+	char group[1024];
+	interactive_participant_get_group(session, this->participant.id, group, &size);
+	return std::string(group, size);
 }

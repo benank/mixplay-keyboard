@@ -1,5 +1,6 @@
 #pragma once
-#include "interactive/interactivity.h"
+#include "interactivity/interactivity.h"
+#include <iostream>
 #include <string>
 
 class Participant

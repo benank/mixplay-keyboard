@@ -13,51 +13,60 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="InteractiveAPI">
+      <UniqueIdentifier>{c3fd8bda-655c-416f-a702-0b5d79e761fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InteractiveAPI\interactivity">
+      <UniqueIdentifier>{df1678fc-77e2-4132-95eb-033bc6ae3dca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MixPlayKeyboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interactive\interactivity.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="InteractiveAPI\Auth.cpp">
+      <Filter>InteractiveAPI</Filter>
     </ClCompile>
-    <ClCompile Include="Auth.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="InteractiveAPI\Control.cpp">
+      <Filter>InteractiveAPI</Filter>
     </ClCompile>
-    <ClCompile Include="Interactive.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="InteractiveAPI\Core.cpp">
+      <Filter>InteractiveAPI</Filter>
     </ClCompile>
-    <ClCompile Include="InteractiveScene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="InteractiveAPI\Participant.cpp">
+      <Filter>InteractiveAPI</Filter>
     </ClCompile>
-    <ClCompile Include="InteractiveControl.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="InteractiveAPI\Scene.cpp">
+      <Filter>InteractiveAPI</Filter>
     </ClCompile>
-    <ClCompile Include="Participant.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="InteractiveAPI\interactivity\interactivity.cpp">
+      <Filter>InteractiveAPI\interactivity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Secret.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Auth.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ClientIds.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Interactive.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="InteractiveAPI\Auth.h">
+      <Filter>InteractiveAPI</Filter>
     </ClInclude>
-    <ClInclude Include="InteractiveScene.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="InteractiveAPI\Control.h">
+      <Filter>InteractiveAPI</Filter>
     </ClInclude>
-    <ClInclude Include="InteractiveControl.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="InteractiveAPI\Core.h">
+      <Filter>InteractiveAPI</Filter>
     </ClInclude>
-    <ClInclude Include="Participant.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="InteractiveAPI\Participant.h">
+      <Filter>InteractiveAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractiveAPI\Scene.h">
+      <Filter>InteractiveAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractiveAPI\interactivity\interactivity.h">
+      <Filter>InteractiveAPI\interactivity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

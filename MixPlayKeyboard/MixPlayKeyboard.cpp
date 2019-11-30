@@ -5,17 +5,15 @@
 #include <windows.h>
 #include <shellapi.h>
 
-#include "interactive/interactivity.h"
-#include "Auth.h"
-#include "Interactive.h"
+#include "InteractiveAPI/Core.h"
 
 int main()
 {
 	int err = Auth::Authorize();
 	if (err) return err;
 
-	err = Interactive::Initialize();
+	err = Core::Initialize();
 	if (err) return err;
 
-	Interactive::Run();
+	Core::Run();
 }

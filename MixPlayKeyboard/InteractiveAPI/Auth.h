@@ -6,8 +6,8 @@
 #include <shellapi.h>
 #include <fstream>
 #include <sstream>
-#include "interactive/interactivity.h"
-#include "ClientIds.h"
+#include "interactivity/interactivity.h"
+#include "../ClientIds.h"
 
 class Auth
 {

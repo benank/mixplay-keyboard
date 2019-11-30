@@ -1,38 +1,38 @@
-#include "InteractiveControl.h"
+#include "Control.h"
 
 
-interactive_session InteractiveControl::session;
+interactive_session Control::session;
 
-InteractiveControl::~InteractiveControl()
+Control::~Control()
 {
 }
 
-int InteractiveControl::TriggerCooldown(const unsigned long long cooldownMs)
+int Control::TriggerCooldown(const unsigned long long cooldownMs)
 {
 	return interactive_control_trigger_cooldown(session, control.id, cooldownMs);
 }
 
-int InteractiveControl::SetDisabled(bool disabled)
+int Control::SetDisabled(bool disabled)
 {
 	return interactive_control_set_property_bool(session, control.id, CONTROL_PROP_DISABLED, disabled);
 }
 
-int InteractiveControl::GetProperty(const char * key, int * data)
+int Control::GetProperty(const char * key, int * data)
 {
 	return interactive_control_get_property_int(session, control.id, key, data);
 }
 
-int InteractiveControl::GetProperty(const char * key, bool * data)
+int Control::GetProperty(const char * key, bool * data)
 {
 	return interactive_control_get_property_bool(session, control.id, key, data);
 }
 
-int InteractiveControl::GetProperty(const char * key, float * data)
+int Control::GetProperty(const char * key, float * data)
 {
 	return interactive_control_get_property_float(session, control.id, key, data);
 }
 
-int InteractiveControl::GetProperty(const char * key, std::string * data)
+int Control::GetProperty(const char * key, std::string * data)
 {
 	size_t length;
 	char data_c[1024];
@@ -42,22 +42,32 @@ int InteractiveControl::GetProperty(const char * key, std::string * data)
 	return 0;
 }
 
-int InteractiveControl::SetProperty(const char * key, int data)
+int Control::SetProperty(const char * key, int data)
 {
 	return interactive_control_set_property_int(session, control.id, key, data);
 }
 
-int InteractiveControl::SetProperty(const char * key, bool data)
+int Control::SetProperty(const char * key, bool data)
 {
 	return interactive_control_set_property_bool(session, control.id, key, data);
 }
 
-int InteractiveControl::SetProperty(const char * key, float data)
+int Control::SetProperty(const char * key, float data)
 {
 	return interactive_control_set_property_float(session, control.id, key, data);
 }
 
-int InteractiveControl::SetProperty(const char * key, std::string data)
+int Control::SetProperty(const char * key, std::string data)
 {
 	return interactive_control_set_property_string(session, control.id, key, data.c_str());
+}
+
+void Control::SetValue(std::string key, void * value)
+{
+	values[key] = value;
+}
+
+void * Control::GetValue(std::string key)
+{
+	return values[key];
 }

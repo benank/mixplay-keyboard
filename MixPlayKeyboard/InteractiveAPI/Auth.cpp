@@ -27,10 +27,10 @@ int Auth::Authorize()
 		if (isStale)
 		{
 			char newToken[1024];
-			size_t size = token.length();
-			err = interactive_auth_refresh_token(CLIENT_ID, CLIENT_SECRET, token.c_str(), newToken, &size);
+			size_t newTokenLength = _countof(newToken);
+			err = interactive_auth_refresh_token(CLIENT_ID, CLIENT_SECRET, token.c_str(), newToken, &newTokenLength);
 			if (err) return err;
-			token = std::string(newToken, size);
+			token = std::string(newToken, newTokenLength);
 		}
 	}
 
